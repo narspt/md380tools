@@ -24,3 +24,6 @@ int ambe_encode_thing(short *bitbuffer,
                       short a6, //timeslot, 0 or 1
                       short a7, //2000
                       int);  // 2000c730
+
+void decode_amb_buffer(unsigned char *ambe49,short *pcm);
+void encode_amb_buffer(unsigned char *ambe49, short *pcm);
