@@ -503,7 +503,7 @@ void get49BitRawAmbe(bool ambe_fr[4][24], unsigned char *data) {
 void convert49BitAmbeTo72BitFrames(unsigned char *data, bool ambe_fr[4][24]) {
     bool ambe_d[7*8];
     bytes_to_bits(data, ambe_d, 7);
-    memset(ambe_fr, 0, sizeof(ambe_fr));
+    memset(ambe_fr, 0, sizeof(bool)*4*24);
 
     //Place bits into the 4x24 frames.  [bit0...bit23]
     //fr0: [P e10 e9 e8 e7 e6 e5 e4 e3 e2 e1 e0 11 10 9 8 7 6 5 4 3 2 1 0]
@@ -559,7 +559,7 @@ void interleave(bool ambe_fr[4][24], unsigned char *data) {
 void deinterleave(unsigned char *data, bool ambe_fr[4][24]) {
     bool databits[72];
     bytes_to_bits(data, databits, 9);
-    memset(ambe_fr, 0, sizeof(ambe_fr));
+    memset(ambe_fr, 0, sizeof(bool)*4*24);
 
     unsigned int bitIndex = 0;
     for (int i = 0; i < 36; i++) {
