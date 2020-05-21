@@ -740,6 +740,21 @@ void ambeServer(int portNumber) {
               memcpy(poutbuf, tmp, sizeof(tmp));
               pbuffer += 13; poutbuf += sizeof(tmp);
             }
+            else if (pbuffer[0] == 0x09) { //RATET
+              if (pbuffer[1] == 33) {
+                speech_rate = 2450; fec_rate = 1150;
+              }
+              else if (pbuffer[1] == 34) {
+                speech_rate = 2450; fec_rate = 0;
+              }
+              else {
+                speech_rate = 0; fec_rate = 0;
+              }
+              if (verbosity >= 1) printf("CONTROL RATET, SPEECH_RATE:%d FEC_RATE:%d\n", speech_rate, fec_rate);
+              static const unsigned char tmp[] = {0x09, 0x00};
+              memcpy(poutbuf, tmp, sizeof(tmp));
+              pbuffer += 2; poutbuf += sizeof(tmp);
+            }
             else if (pbuffer[0] == 0x4B) { //GAIN
               gain_in = (signed char)pbuffer[1];
               gain_out = (signed char)pbuffer[2];
