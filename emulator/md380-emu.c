@@ -772,7 +772,7 @@ void ambeServer(int portNumber) {
           outbuf[2] = (poutbuf-&outbuf[4]) & 0xFF; //packet length
           sendto(sockFd, outbuf, poutbuf-outbuf, MSG_DONTWAIT, (struct sockaddr *)&sa_read, (ssize_t)sizeof(struct sockaddr_in));
           if (verbosity >= 2) {
-            printf("CONTROL Reply\n", n);
+            printf("CONTROL Reply\n");
             dump(outbuf, poutbuf-outbuf);
           }
         } //CONTROL PACKET
